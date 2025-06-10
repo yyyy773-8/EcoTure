@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<title>EcoTure</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f7f7f7;
+  line-height: 1.6;
+  color: #222;
+}
+
+/* Настройка меню навигации */
+#main-nav {
+  background-color: #111828;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 10;
+}
+
+.logo-holder {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 50px;
+  width: auto;
+  margin-right: 15px;
+  border-radius: 8px;
+  object-fit: contain;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.logo-text {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+#main-menu {
+  list-style: none;
+  display: flex;
+  margin-left: auto;
+}
+
+.main-menu-item {
+  margin-left: 15px;
+}
+
+.main-menu-item a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.main-menu-item a:hover {
+  background-color: #eb7f00;
+  transform: translateY(-2px);
+}
+
+/* Основной стиль слайдера */
+.slider-container {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  margin: 40px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.slider {
+  position: relative;
+  display: flex;
+  transition: transform 0.7s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide img {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  display: block;
+}
+
+.slide::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  z-index: 1;
+}
+
+.slide-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: center;
+  padding: 0 20px;
+  z-index: 2;
+  max-width: 80%;
+}
+
+.slide-content h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+}
+
+.slide-content p {
+  font-size: 20px;
+  max-width: 700px;
+  margin: 0 auto;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+/* Индикаторы (круги) */
+.indicators {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  z-index: 3;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.6);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.indicator.active {
+  background-color: #fff;
+}
+
+/* Кнопки навигации */
+.nav-buttons {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  padding: 0 20px;
+  z-index: 3;
+}
+
+.nav-button {
+  background-color: rgba(17, 24, 40, 0.7);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #fff;
+  transition: background-color 0.3s;
+}
+
+.nav-button:hover {
+  background-color: rgba(17, 24, 40, 0.9);
+}
+
+/* Калькулятор услуг */
+.calculator {
+  margin-top: 30px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.result {
+  margin-top: 10px;
+  font-weight: bold;
+  color: green;
+}
+
+/* Анкорная ссылка на калькулятор */
+a.anchor-link {
+  color: #EB7F00;
+  text-decoration: underline;
+  font-weight: bold;
+}
+u {
+  color: #EB7F00;
+  text-decoration: underline;
+  font-weight: bold;
+}
+/* Стилизация таблицы цен */
+table.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+/* Медиазапросы для адаптивной версии */
+@media(max-width: 992px){
+  .company-services-row, #our-services {
+    flex-direction: column;
+    align-items: center;
+  }
+  .company-block, .services-block, .service-item {
+    width: 80%;
+  }
+}
+</style>
+</head>
+<body>
+<header>
+<nav id="main-nav">
+  <div class="logo-holder">
+    <img src="logo.jpg" alt="EcoTure" class="logo-img"/>
+    <span class="logo-text">EcoTure</span>
+  </div>
+  <ul id="main-menu">
+    <li class="main-menu-item"><a href="index.htm">Главная</a></li>
+    <li class="main-menu-item"><a href="#services">Услуги</a></li>
+    <li class="main-menu-item"><a href="#about-us">О компании</a></li>
+    <li class="main-menu-item"><a href="#contact-info">Контакты</a></li>
+    <li class="main-menu-item"><a href="#personal-cabinet">Личный кабинет</a></li>
+  </ul>
+</nav>
+</header>
+
+<h1>Услуги EcoTure</h1>
+
+<div class="slider-container">
+  <div class="slider" id="slider">
+    <div class="slide">
+      <img src="images/slide1.jpg" alt="Слайд 1" />
+      <div class="slide-content">
+        <h1>Уборка частных участков</h1>
+        <p>Эта услуга предназначена для владельцев загородных домов, дачников и тех, кто хочет поддерживать свой участок чистым и ухоженным. Профессиональные уборщики выполнят уборку любой сложности, используя современные методы и средства ухода за территорией, безопасные для экологии и здоровья человека. Работы включают сбор мусора, стрижку газона, удаление сорняков, мойку поверхностей.</p>
+        <strong>Цена: 10 руб./кв.м</strong>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="images/slide2.jpg" alt="Слайд 2" />
+      <div class="slide-content">
+        <h1>Уборка офисов</h1>
+        <p>Чистота вашего офиса благодаря безопасным средствам. Виды работ: генеральная уборка, химчистка мебели, мытьё окон, устранение пыли. Возможна уборка ночью или в выходные, не мешая рабочему процессу.</p>
+        <strong>Цена: 15 руб./кв.м</strong>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="images/slide3.jpg" alt="Слайд 3" />
+      <div class="slide-content">
+        <h1>Экскурсии</h1>
+        <p>Экологические мероприятия и ознакомительные туры для людей любых возрастов. Формы активности: пешие прогулки, посадка деревьев, тематические занятия. В стоимость входят привлечение транспорта и организация питания.</p>
+        <strong>Цена: 300 руб./участник.</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Стрелки навигации -->
+  <div class="nav-buttons">
+    <button id="prevBtn" class="nav-button">⇦</button>
+    <button id="nextBtn" class="nav-button">⇨</button>
+  </div>
+
+  <!-- Индикаторы -->
+  <div class="indicators" id="indicators"></div>
+</div>
+
+<u>Посчитайте свою выгоду здесь ↓</u>
+
+<div class="calculator" id="calculator">
+  <h3>Калькулятор стоимости услуг</h3>
+  <form action="" method="post">
+    <label for="serviceType">Тип услуги:</label>
+    <select id="serviceType" onchange="showFields()">
+      <option value="">-- Выберите услугу --</option>
+      <option value="landscaping">Уборка участка</option>
+      <option value="office">Уборка офиса</option>
+      <option value="excursion">Экологическая экскурсия</option>
+    </select><br/><br/>
+    
+    <div id="additionalFields"></div>
+
+    <button type="button" onclick="calculateCost()">Рассчитать стоимость</button>
+    <div class="result" id="resultDisplay"></div>
+  </form>
+
+  <table class="price-table">
+    <caption>Расценки наших услуг</caption>
+    <thead>
+      <tr>
+        <th>Вид услуги</th>
+        <th>Описание</th>
+        <th>Цена</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Уборка участка</td>
+        <td>Комплексная уборка территории</td>
+        <td>10 руб./кв.м</td>
+      </tr>
+      <tr>
+        <td>Уборка офиса</td>
+        <td>Профессиональная чистка офисных помещений</td>
+        <td>15 руб./кв.м</td>
+      </tr>
+      <tr>
+        <td>Экскурсия</td>
+        <td>Ознакомительная прогулка по природе</td>
+        <td>300 руб./чел.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+const slider = document.getElementById('slider');
+const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
+let currentSlide = 0;
+
+// Создание индикаторов
+const indicatorsContainer = document.getElementById('indicators');
+const indicators = [];
+
+for (let i = 0; i < totalSlides; i++) {
+  const ind = document.createElement('div');
+  ind.classList.add('indicator');
+  if (i === 0) ind.classList.add('active');
+  ind.dataset.index = i;
+  indicatorsContainer.appendChild(ind);
+  indicators.push(ind);
+}
+
+function updateSlide() {
+  const offset = -currentSlide * 100;
+  slider.style.transform = `translateX(${offset}%)`;
+  updateIndicators();
+}
+
+function updateIndicators() {
+  indicators.forEach((ind, index) => {
+    if (index === currentSlide) {
+      ind.classList.add('active');
+    } else {
+      ind.classList.remove('active');
+    }
+  });
+}
+
+// Обработка щелчков
+document.getElementById('nextBtn').addEventListener('click', () => {
+  currentSlide = (currentSlide + 1) % totalSlides;
+  updateSlide();
+});
+
+document.getElementById('prevBtn').addEventListener('click', () => {
+  currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+  updateSlide();
+});
+
+// Обработка щелчка по индикатору
+indicators.forEach((ind, index) => {
+  ind.addEventListener('click', () => {
+    currentSlide = index;
+    updateSlide();
+  });
+});
+
+// Логика для калькулятора
+function showFields() {
+  const serviceType = document.getElementById('serviceType').value;
+  const additionalFields = document.getElementById('additionalFields');
+  additionalFields.innerHTML = '';
+
+  if (serviceType === 'landscaping' || serviceType === 'office') {
+    additionalFields.innerHTML = `
+      <label for="area">Площадь (кв. м):</label>
+      <input type="number" id="area" placeholder="Введите площадь">
+    `;
+  } else if (serviceType === 'excursion') {
+    additionalFields.innerHTML = `
+      <label for="numParticipants">Количество участников:</label>
+      <input type="number" id="numParticipants" placeholder="Введите число участников">
+    `;
+  }
+}
+
+function calculateCost() {
+  const serviceType = document.getElementById('serviceType').value;
+  let cost = 0;
+
+  if (serviceType === 'landscaping' || serviceType === 'office') {
+    const area = parseFloat(document.getElementById('area').value);
+    cost = Math.round(area * (serviceType === 'landscaping' ? 10 : 15));
+  } else if (serviceType === 'excursion') {
+    const participants = parseInt(document.getElementById('numParticipants').value);
+    cost = participants * 300;
+  }
+
+  document.getElementById('resultDisplay').innerHTML = `<strong>Общая стоимость:</strong> ${cost} ₽`;
+}
+</script>
+
+</body>
+</html>
