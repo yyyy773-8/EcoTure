@@ -1,73 +1,53 @@
-<form action="login.php" method="POST"><!-- Модальное окно входа -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Вход в личный кабинет</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="loginForm">
-                        <div class="mb-3">
-                            <label for="loginEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="loginEmail" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="loginPassword" class="form-label">Пароль</label>
-                            <input type="password" class="form-control" id="loginPassword" required>
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="rememberMe">
-                            <label class="form-check-label" for="rememberMe">Запомнить меня</label>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Войти</button>
-                    </form>
-                    <div class="text-center mt-3">
-                        <a href="#" class="text-decoration-none">Забыли пароль?</a>
-                        <p class="mt-2">Нет аккаунта? <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" data-bs-dismiss="modal">Зарегистрируйтесь</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход или Регистрация</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .login-button {
+            background-color: #007bff;
+            color: white;
+        }
+        .register-button {
+            background-color: #28a745;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Добро пожаловать!</h1>
+        <p>Пожалуйста, выберите действие:</p>
+        <button class="login-button" onclick="window.location.href='login.html'">Вход</button>
+        <button class="register-button" onclick="window.location.href='register.html'">Регистрация</button>
     </div>
-
-    <!-- Модальное окно регистрации -->
-  <form action="register.php" method="POST">
-    <div class="modal fade" id="registerModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Регистрация</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="registerForm">
-                        <div class="mb-3">
-                            <label for="regName" class="form-label">Имя</label>
-                            <input type="text" class="form-control" id="regName" minlength="2" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="regEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="regEmail" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="regPassword" class="form-label">Пароль</label>
-                            <input type="password" class="form-control" id="regPassword" minlength="8" required>
-                            <div class="form-text">Минимум 8 символов, включая цифры и спецсимволы</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="regConfirmPassword" class="form-label">Подтверждение пароля</label>
-                            <input type="password" class="form-control" id="regConfirmPassword" required>
-                        </div>
-                        <div class="mb-3">
-                            <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Зарегистрироваться</button>
-                    </form>
-                    <div class="text-center mt-3">
-                        <p>Уже есть аккаунт? <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Войдите</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+</body>
+</html>
