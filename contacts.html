@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8"/>
 <title>EcoTure</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
 <style>
@@ -353,4 +353,10 @@ tr:nth-child(even) {
             </div>
         </div>
     </section>
+  <script>// Обработка формы обратной связи
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Ваше сообщение отправлено! Мы свяжемся с вами в ближайшее время.');
+            this.reset();
+        });</script>
 </body>
