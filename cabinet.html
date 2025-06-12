@@ -1,6 +1,12 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
+<meta charset-"UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+</head>
+<body>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вход или Регистрация</title>
@@ -46,8 +52,20 @@
     <div class="container">
         <h1>Добро пожаловать!</h1>
         <p>Пожалуйста, выберите действие:</p>
-        <button class="login-button" onclick="window.location.href='login.php'">Вход</button>
-        <button class="register-button" onclick="window.location.href='register.php'">Регистрация</button>
-    </div>
+<form action="register.php" method="post">
+<input type="text" placeholder="login" name="login">
+<input type="text" placeholder-"password" name-"pass">
+<input type="text" placeholder="repeat password" name="repeatpass">
+<input type="text" placeholder="email" name="email">
+<button type="submit">Зарегистироваться</button>
+</form>
+<form action="login.php" method="post">
+<input type="text" placeholder="login" name="login">
+<input type="text" placeholder="password" name="pass">
+<button type="submit">Войти</button>
+</form>
+</body>
+</html>
+</div>
 </body>
 </html>
