@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<title>EcoTure</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f7f7f7;
+  line-height: 1.6;
+  color: #222;
+}
+
+/* Настройка меню навигации */
+#main-nav {
+  background-color: #111828;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 10;
+}
+
+.logo-holder {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 50px;
+  width: auto;
+  margin-right: 15px;
+  border-radius: 8px;
+  object-fit: contain;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.logo-text {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+#main-menu {
+  list-style: none;
+  display: flex;
+  margin-left: auto;
+}
+
+.main-menu-item {
+  margin-left: 15px;
+}
+
+.main-menu-item a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.main-menu-item a:hover {
+  background-color: #eb7f00;
+  transform: translateY(-2px);
+}
+
+/* Основной стиль слайдера */
+.slider-container {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  margin: 40px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.slider {
+  position: relative;
+  display: flex;
+  transition: transform 0.7s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide img {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  display: block;
+}
+
+.slide::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  z-index: 1;
+}
+
+.slide-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: center;
+  padding: 0 20px;
+  z-index: 2;
+  max-width: 80%;
+}
+
+.slide-content h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+}
+
+.slide-content p {
+  font-size: 20px;
+  max-width: 700px;
+  margin: 0 auto;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+/* Индикаторы (круги) */
+.indicators {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  z-index: 3;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.6);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.indicator.active {
+  background-color: #fff;
+}
+
+/* Кнопки навигации */
+.nav-buttons {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  padding: 0 20px;
+  z-index: 3;
+  color:#111828;
+}
+
+.nav-button {
+  background-color: rgba(17, 24, 40, 0.7);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #fff;
+  transition: background-color 0.3s;
+}
+
+.nav-button:hover {
+  background-color: rgba(17, 24, 40, 0.9);
+}
+
+/* Калькулятор услуг */
+.calculator {
+  margin-top: 30px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.result {
+  margin-top: 10px;
+  font-weight: bold;
+  color: green;
+}
+
+/* Анкорная ссылка на калькулятор */
+a.anchor-link {
+  color: #EB7F00;
+  text-decoration: underline;
+  font-weight: bold;
+}
+u {
+  color: #EB7F00;
+  text-decoration: underline;
+  font-weight: bold;
+}
+/* Стилизация таблицы цен */
+table.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+.calculator { margin-top: 30px; border: 1px solid #ccc; padding: 20px; background-color: #f9f9f9; border-radius: 12px; max-width: 600px; margin: 40px auto; text-align: center; } /* Дополнительные базовые стили */ body { font-family: Arial, Helvetica, sans-serif; line-height: 1.6; background-color: #fafafa; } h3 { color: #333; margin-bottom: 20px; } form { display: inline-block; text-align: left; } label { display: block; margin-bottom: 5px; } input[type="email"], input[type="password"] { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; } button[type="button"] { padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; } button[type="button"]:hover { background-color: #0056b3; } .result { margin-top: 20px; font-size: 1.2em; color: green; } table.price-table { width: 100%; border-collapse: collapse; margin-top: 20px; } caption { font-weight: bold; font-size: 1.2em; margin-bottom: 10px; } th, td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; } tr:nth-child(even) { background-color: #f2f2f2; } tbody tr:last-child td { border-bottom: none; }
+tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+/* Медиазапросы для адаптивной версии */
+@media(max-width: 992px){
+  .company-services-row, #our-services {
+    flex-direction: column;
+    align-items: center;
+  }
+  .company-block, .services-block, .service-item {
+    width: 80%;
+  }
+}
+</style>
+</head>
+<body>
+<header>
+<nav id="main-nav">
+  <div class="logo-holder">
+    <img src="logo.jpg" alt="EcoTure" class="logo-img"/>
+    <span class="logo-text">EcoTure</span>
+  </div>
+  <ul id="main-menu">
+    <li class="main-menu-item"><a href="index.html">Главная</a></li>
+    <li class="main-menu-item"><a href="uslugi.html">Услуги</a></li>
+    <li class="main-menu-item"><a href="company.html">О компании</a></li>
+    <li class="main-menu-item"><a href="#contact-info">Контакты</a></li>
+    <li class="main-menu-item"><a href="cabinet.html">Личный кабинет</a></li>
+  </ul>
+</nav>
+</header>
+<!-- Секция контактов -->
+    <section id="contacts" class="py-5 fade-in">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Контакты</h2>
+                <p class="text-muted">Свяжитесь с нами удобным для вас способом</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="fas fa-map-marker-alt text-primary fs-1 mb-3"></i>
+                            <h5>Адрес</h5>
+                            <p class="text-muted">г. Москва, ул. Примерная, д. 123</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="fas fa-phone-alt text-primary fs-1 mb-3"></i>
+                            <h5>Телефон</h5>
+                            <p class="text-muted">+7 (123) 456-78-90</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="fas fa-envelope text-primary fs-1 mb-3"></i>
+                            <h5>Email</h5>
+                            <p class="text-muted">info@example.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-lg-6 mb-4">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2245.3737891357376!2d37.61842331593095!3d55.75370398055313!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54a5a738fa419%3A0x7c347d506f52311f!2z0JrRgNCw0YHQvdCw0Y8g0J_Qu9C-0YnQsNC00Yw!5e0!3m2!1sru!2sru!4v1620000000000!5m2!1sru!2sru" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Обратная связь</h5>
+                            <form id="contactForm">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Ваше имя</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Телефон</label>
+                                    <input type="tel" class="form-control" id="phone">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Сообщение</label>
+                                    <textarea class="form-control" id="message" rows="3" required></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="attachment" class="form-label">Прикрепить файл (необязательно)</label>
+                                    <input class="form-control" type="file" id="attachment">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Отправить</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
