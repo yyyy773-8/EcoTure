@@ -1,11 +1,14 @@
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'yyyy');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+<?php
+$servername = "localhost"; // или ваш сервер базы данных
+$username = "username"; // ваш пользователь базы данных
+$password = "password"; // ваш пароль базы данных
+$dbname = "database_name"; // имя вашей базы данных
 
-try {
-    $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Ошибка соединения с базой данных: " . $e->getMessage());
+// Создание подключения
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Проверка подключения
+if ($conn->connect_error) {
+    die("Ошибка подключения: " . $conn->connect_error);
 }
+?>
