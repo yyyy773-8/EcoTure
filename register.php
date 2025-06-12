@@ -1,3 +1,3 @@
 <? php
 
-    $_Post['login'];
+   echo $_Post['login'];
