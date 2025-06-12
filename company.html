@@ -1,63 +1,193 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8" />
-<title>EcoTure</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
-    <style> * { box-sizing: border-box; margin: 0; padding: 0; } body { font-family: 'Montserrat', sans-serif; background-color: #f7f7f7; line-height: 1.6; color: #222; } /* Настройка меню навигации */ #main-nav { background-color: #111828; height: 60px; display: flex; align-items: center; padding: 0 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); position: relative; z-index: 10; } .logo-holder { display: flex; align-items: center; } .logo-img { height: 50px; width: auto; margin-right: 15px; border-radius: 8px; object-fit: contain; box-shadow: 0 2px 4px rgba(0,0,0,0.1); } .logo-text { color: #fff; font-size: 24px; font-weight: 700; } #main-menu { list-style: none; display: flex; margin-left: auto; } .main-menu-item { margin-left: 15px; } .main-menu-item a { color: #fff; text-decoration: none; padding: 10px 15px; border-radius: 6px; font-weight: 500; transition: background-color 0.3s, transform 0.2s; } .main-menu-item a:hover { background-color: #eb7f00; transform: translateY(-2px); } /* Основной стиль слайдера */ .slider-container { position: relative; max-width: 100%; overflow: hidden; border-radius: 12px; margin: 40px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.2); } .slider { position: relative; display: flex; transition: transform 0.7s ease-in-out; } .slide { min-width: 100%; position: relative; display: flex; align-items: center; justify-content: center; } .slide img { width: 100%; height: 100vh; object-fit: cover; display: block; } .slide::before { content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.4); border-radius: 12px; z-index: 1; } .slide-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #fff; text-align: center; padding: 0 20px; z-index: 2; max-width: 80%; } .slide-content h1 { font-family: 'Montserrat', sans-serif; font-size: 48px; font-weight: 700; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.6); } .slide-content p { font-size: 20px; max-width: 700px; margin: 0 auto; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); } /* Индикаторы (круги) */ .indicators { position: absolute; bottom: 20px; width: 100%; display: flex; justify-content: center; gap: 10px; z-index: 3; } .indicator { width: 12px; height: 12px; border-radius: 50%; background-color: rgba(255,255,255,0.6); cursor: pointer; transition: background-color 0.3s; } .indicator.active { background-color: #fff; } /* Кнопки навигации */ .nav-buttons { position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; transform: translateY(-50%); padding: 0 20px; z-index: 3; color:#111828; } .nav-button { background-color: rgba(17, 24, 40, 0.7); border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #fff; transition: background-color 0.3s; } .nav-button:hover { background-color: rgba(17, 24, 40, 0.9); } /* Калькулятор услуг */ .calculator { margin-top: 30px; border: 1px solid #ccc; padding: 20px; background-color: #f9f9f9; border-radius: 12px; max-width: 600px; margin: 40px auto; text-align: center; } .result { margin-top: 10px; font-weight: bold; color: green; } /* Анкорная ссылка на калькулятор */ a.anchor-link { color: #EB7F00; text-decoration: underline; font-weight: bold; } u { color: #EB7F00; text-decoration: underline; font-weight: bold; } /* Стилизация таблицы цен */ table.price-table { width: 100%; border-collapse: collapse; margin-top: 20px; } th, td { padding: 10px; text-align: center; border: 1px solid #ddd; } th { background-color: #f2f2f2; font-weight: bold; } .calculator { margin-top: 30px; border: 1px solid #ccc; padding: 20px; background-color: #f9f9f9; border-radius: 12px; max-width: 600px; margin: 40px auto; text-align: center; } /* Дополнительные базовые стили */ body { font-family: Arial, Helvetica, sans-serif; line-height: 1.6; background-color: #fafafa; } h3 { color: #333; margin-bottom: 20px; } form { display: inline-block; text-align: left; } label { display: block; margin-bottom: 5px; } input[type="email"], input[type="password"] { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; } button[type="button"] { padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; } button[type="button"]:hover { background-color: #0056b3; } .result { margin-top: 20px; font-size: 1.2em; color: green; } table.price-table { width: 100%; border-collapse: collapse; margin-top: 20px; } caption { font-weight: bold; font-size: 1.2em; margin-bottom: 10px; } th, td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; } tr:nth-child(even) { background-color: #fafafa; } /* Медиазапросы для адаптивной версии */ @media(max-width: 992px){ .company-services-row, #our-services { flex-direction: column; align-items: center; } .company-block, .services-block, .service-item { width: 80%; } } </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #ecf0f1;
+            line-height: 1.6;
+            color: #2c3e50;
+        }
+
+        /* НАВИГАЦИЯ */
+        header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        nav li {
+            margin: 0 1rem;
+        }
+
+        nav a {
+            color: inherit;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #3498db;
+        }
+
+        /* ЛОГОТИП */
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* БЛОК ОБ ЭКОНОМЕ */
+        section#about {
+            padding: 5rem 0;
+            background-image: linear-gradient(to bottom, #3498db, #ecf0f1);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        #about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #about p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 60ch;
+            margin: 0 auto;
+        }
+
+        /* ПРЕИМУЩЕСТВА */
+        .advantages {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .advantage {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .advantage i {
+            font-size: 2.5rem;
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+
+        /* ИЗОБРАЖЕНИЕ КОМПАНИИ */
+        .company-gallery {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+
+        .company-gallery img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ФУТЕР */
+        footer {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* АНИМАЦИЯ ПРОКРУТКИ */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 0.6s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Навигационное меню -->
+    <!-- ШАПКА САЙТА -->
     <header>
-<nav id="main-nav">
-  <div class="logo-holder">
-    <img src="logo.jpg" alt="EcoTure" class="logo-img"/>
-    <span class="logo-text">EcoTure</span>
-  </div>
-  <ul id="main-menu">
-    <li class="main-menu-item"><a href="index.html">Главная</a></li>
-    <li class="main-menu-item"><a href="uslugi.html">Услуги</a></li>
-    <li class="main-menu-item"><a href="#about-us">О компании</a></li>
-    <li class="main-menu-item"><a href="#contact-info">Контакты</a></li>
-    <li class="main-menu-item"><a href="cabinet.html">Личный кабинет</a></li>
-  </ul>
-</nav>
-</header>
-    
-    <!-- О компании -->
-    <section id="about" class="py-5">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 mb-4 mb-lg-0 animate-on-scroll">
-                    <img src="companyglav.jpg" class="companyglav.jpg" alt="Наша мастерская">
+            <nav>
+                <a href="#" class="logo">EcoTure</a>
+                <ul>
+                    <li><a href="#about">О компании</a></li>
+                    <li><a href="#services">Наши услуги</a></li>
+                    <li><a href="#contact">Связаться с нами</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- РАЗДЕЛ О НАС -->
+    <section id="about" class="animate-on-scroll">
+        <div class="container">
+            <h2>О нашей компании EcoTure</h2>
+            <p>Мы предлагаем высококачественные экотуры и уборочные услуги с использованием инновационных технологий и заботы об экологии!</p>
+            <div class="advantages">
+                <div class="advantage">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Экологичность</h3>
+                    <p>Используем биоразлагаемые материалы и бережное отношение к ресурсам планеты.</p>
                 </div>
-                <div class="col-lg-6 animate-on-scroll">
-                    <h2 class="fw-bold mb-4">О компании EcoTure</h2>
-                    <p>EcoTure — это инновационная компания, которая активно работает в сфере предоставления экологически чистых услуг.</p>
-                    <p>Наша миссия заключается в том, чтобы сделать уборку и экскурсионные услуги безопасными для природы и удобными для клиентов.</p>
-                    <p>Для нас важна забота об окружающей среде, поэтому мы стремимся к тому, чтобы каждая наша услуга способствовала улучшению экологической ситуации.<br>Почему выбирают EcoTure?</p>
-                    <div class="mt-4">
-                        <div class="d-flex mb-3">
-                            <i class="fas fa-check-circle me-2 mt-1"></i>
-                            <div>Экологичность</div>
-                        </div>
-                        <div class="d-flex mb-3">
-                            <i class="fas fa-check-circle me-2 mt-1"></i>
-                            <div>Профессионализм</div>
-                        </div>
-                        <div class="d-flex mb-3">
-                            <i class="fas fa-check-circle me-2 mt-1"></i>
-                            <div>Гарантия на все работы</div>
-                        </div>
-                        <div class="d-flex mb-3">
-                            <i class="fas fa-check-circle me-2 mt-1"></i>
-                            <div>Забота о клиентах</div>
-                          <br>EcoTure — это ваш надежный партнер в области уборки и экологического туризма. Мы уверены, что забота о природе и высокое качество услуг могут идти рука об руку. Присоединяйтесь к нам в стремлении к чистоте и экологической ответственности!
-                        </div>
-                    </div>
+                <div class="advantage">
+                    <i class="fas fa-star"></i>
+                    <h3>Качество</h3>
+                    <p>Высокий уровень сервиса и профессионализм наших сотрудников.</p>
                 </div>
+                <div class="advantage">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Безопасность</h3>
+                    <p>Все наши продукты сертифицированы и проверены временем.</p>
+                </div>
+            </div>
+            <div class="company-gallery">
+                <img src="companyglav.jpg" alt="Наш офис">
             </div>
         </div>
     </section>
+
+    <!-- ПОДПИСЬ И КОНТАКТЫ -->
+    <footer>
+        <div class="container">
+            <p>© 2023 EcoTure. Все права защищены.</p>
+        </div>
+    </footer>
 </body>
 </html>
