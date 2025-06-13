@@ -329,18 +329,19 @@ body {
 </head>
 <body>
 <header>
-<nav id="main-nav">
-  <div class="logo-holder">
-    <img src="logo.jpg" alt="EcoTure" class="logo-img" />
-    <span class="logo-text">EcoTure</span>
-  </div>
-  <ul id="main-menu">
-    <li class="main-menu-item"><a href="index.html">Главная</a></li>
-    <li class="main-menu-item"><a href="uslugi.html">Услуги</a></li>
-    <li class="main-menu-item"><a href="company.html">О компании</a></li>
-    <li class="main-menu-item"><a href="contacts.html">Контакты</a></li>
-    <script>
-    <?php if (isset($_SESSION['user_id'])): ?>
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="index.php">CLEAN</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.php">Главная</a></li>
+        <li class="nav-item"><a class="nav-link" href="uslugi.html">Услуги</a></li>
+        <li class="nav-item"><a class="nav-link" href="company.html">О компании</a></li>
+        <li class="nav-item"><a class="nav-link" href="contacts.html">Контакты</a></li>
+        <?php if (isset($_SESSION['user_id'])): ?>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
               <?= htmlspecialchars($_SESSION['user_name'] ?? 'Профиль') ?>
@@ -357,9 +358,7 @@ body {
         <?php endif; ?>
       </ul>
     </div>
-  </div></script>
-</nav>
-  </ul>
+  </div>
 </nav>
 </header>
 
