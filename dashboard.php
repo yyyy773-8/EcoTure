@@ -1,6 +1,11 @@
 <?php
-include 'auth.php'; // Проверка аутентификации
-
-echo "Welcome, " . $_SESSION['username'] . "!";
-echo "<a href='logout.php'>Logout</a>";
+include 'auth.php';
+check_auth();
+include 'header.php';
 ?>
+<div class="container">
+    <h2>Личный кабинет</h2>
+    <p>Добро пожаловать, пользователь!</p>
+    <a href="logout.php" class="btn btn-secondary">Выйти</a>
+</div>
+<?php include 'footer.php'; ?>
