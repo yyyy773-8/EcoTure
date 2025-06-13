@@ -338,7 +338,25 @@ body {
     <li class="main-menu-item"><a href="uslugi.html">Услуги</a></li>
     <li class="main-menu-item"><a href="company.html">О компании</a></li>
     <li class="main-menu-item"><a href="contacts.html">Контакты</a></li>
-    <li class="main-menu-item"><a href="cabinet.html">Личный кабинет</a></li>
+    <?php if (isset($_SESSION['user_id'])): ?>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              <?= htmlspecialchars($_SESSION['user_name'] ?? 'Профиль') ?>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="profile.php">Личный кабинет</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="logout.php">Выйти</a></li>
+            </ul>
+          </li>
+        <?php else: ?>
+          <li class="nav-item"><a class="nav-link" href="login.php">Вход</a></li>
+          <li class="nav-item"><a class="nav-link" href="register.php">Регистрация</a></li>
+        <?php endif; ?>
+      </ul>
+    </div>
+  </div>
+</nav>
   </ul>
 </nav>
 </header>
