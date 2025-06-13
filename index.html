@@ -339,6 +339,7 @@ body {
     <li class="main-menu-item"><a href="uslugi.html">Услуги</a></li>
     <li class="main-menu-item"><a href="company.html">О компании</a></li>
     <li class="main-menu-item"><a href="contacts.html">Контакты</a></li>
+    <script>
     <?php if (isset($_SESSION['user_id'])): ?>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
@@ -356,7 +357,7 @@ body {
         <?php endif; ?>
       </ul>
     </div>
-  </div>
+  </div></script>
 </nav>
   </ul>
 </nav>
