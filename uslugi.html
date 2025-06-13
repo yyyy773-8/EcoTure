@@ -223,6 +223,37 @@ function calculateCost() {
   document.getElementById('resultDisplay').innerHTML = `<strong>Общая стоимость:</strong> ${cost} ₽`;
 }
 </script>
+<script>
+  <?php
+session_start();
+require 'db.php';
 
+// Проверка данных
+$service_type = $_POST['service_type'] ?? '';
+$room_type = $_POST['room_type'] ?? '';
+$area = (int)($_POST['area'] ?? 0);
+
+// Защита от пустых или некорректных данных
+if (empty($service_type) || empty($room_type) || $area <= 0) {
+    $_SESSION['error'] = "Пожалуйста, заполните все поля корректно.";
+    header("Location: services.php");
+    exit;
+}
+  // Сохраняем в историю только если пользователь вошёл
+if (!empty($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+    $params = json_encode(['room_type' => $room_type, 'area' => $area], JSON_UNESCAPED_UNICODE);
+
+    $stmt = $conn->prepare("INSERT INTO calculations (user_id, service_type, parameters, result_price, created_at) VALUES (?, ?, ?, ?, NOW())");
+    $stmt->bind_param("issd", $user_id, $service_type, $params, $amount);
+    $stmt->execute();
+}
+
+// Показать результат (или можно вернуть на services.php с сообщением)
+echo "<h2>Примерная стоимость: <strong>{$amount} ₽</strong></h2>";
+echo "<p><a href='profile.php'>Перейти в личный кабинет</a></p>";
+echo "<p><a href='services.php'>Назад</a></p>";
+?>
+</script>
 </body>
 </html>
