@@ -176,11 +176,11 @@
             <span class="logo-text">EcoTure</span>
         </div>
         <ul id="main-menu">
-            <li class="main-menu-item"><a href="index.html">Главная</a></li>
-            <li class="main-menu-item"><a href="uslugi.html">Услуги</a></li>
-            <li class="main-menu-item"><a href="company.html">О компании</a></li>
-            <li class="main-menu-item"><a href="#contact-info">Контакты</a></li>
-            <li class="main-menu-item"><a href="cabinet.html">Личный кабинет</a></li>
+            <li class="main-menu-item"><a href="index.php">Главная</a></li>
+            <li class="main-menu-item"><a href="uslugi.php">Услуги</a></li>
+            <li class="main-menu-item"><a href="company.php">О компании</a></li>
+            <li class="main-menu-item"><a href="contacts.php">Контакты</a></li>
+            <li class="main-menu-item"><a href="cabinet.php">Личный кабинет</a></li>
         </ul>
     </header>
 
